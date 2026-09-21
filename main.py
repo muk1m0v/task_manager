@@ -1,7 +1,7 @@
 import db
 import auth
 from style import *
-import getpass
+from getpass import getpass
 
 db.init_tables()
 
