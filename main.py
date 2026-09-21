@@ -1,6 +1,7 @@
 import db
 import auth
 from style import *
+import getpass
 
 db.init_tables()
 
@@ -35,7 +36,7 @@ def auth_menu():
         match choice:
             case "1":
                 name = input("Username: ")
-                if auth.login(name, input("Password: ")):
+                if auth.login(name, getpass("Password: ")):
                     print(lgreen + f"Welcome, {name}!" + reset)
                     task_menu()
                 else:
@@ -45,7 +46,7 @@ def auth_menu():
                 if auth.user_exists(name):
                     print(lred + "User already exists!" + reset)
                 else:
-                    auth.register(name, input("Password: "))
+                    auth.register(name, getpass("Password: "))
             case "0":
                 break
 
