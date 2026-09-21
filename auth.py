@@ -1,20 +1,12 @@
 import db
-from style import *
 
 def register(full_name, password):
     conn = db.get_connection()
     cur = conn.cursor()
-    try:
-        cur.execute("INSERT INTO Users (full_name, password) VALUES (%s, %s)", (full_name, password))
-        conn.commit()
-        print(lgreen + "User registered successfully!" + reset)
-        return True
-    except Exception as err:
-        print(lred + f"Registration error: {err}" + reset)
-        return False
-    finally:
-        cur.close()
-        conn.close()
+    cur.execute("INSERT INTO Users (full_name, password) VALUES (%s, %s)", (full_name, password))
+    conn.commit()
+    cur.close()
+    conn.close()
 
 def login(full_name, password):
     conn = db.get_connection()
